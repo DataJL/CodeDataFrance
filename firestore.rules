@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email.lower() == 'jelucotte@gmail.com' ||
+        request.auth.token.email.lower() == 'jerome.lucotte@yahoo.fr' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    // 2. Catalogue of official season files (Public read so all visitors see the national and regional bilans)
+    match /official_season_files/{fileId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // 3. Centralized performance records dataset (Public read for all athletes and coaches to consult bilans)
+    match /performances/{performanceId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // Season bundles for cost-efficient storage (chunks of performances per file/season)
+    match /season_bundles/{bundleId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // 4. Admins collection
+    match /admins/{adminId} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // 5. User accounts and profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}

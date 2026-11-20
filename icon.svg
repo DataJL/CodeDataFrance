@@ -1,0 +1,127 @@
+<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dfa_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B" />
+      <stop offset="45%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#1E293B" />
+    </linearGradient>
+
+    <linearGradient id="dfa_border" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="35%" stop-color="#2563EB" />
+      <stop offset="70%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#EF4444" />
+    </linearGradient>
+
+    <linearGradient id="lane_blue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+
+    <linearGradient id="lane_white" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+
+    <linearGradient id="lane_red" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DC2626" />
+      <stop offset="100%" stop-color="#F87171" />
+    </linearGradient>
+
+    <linearGradient id="gold_pulse" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#D97706" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#FDE047" />
+    </linearGradient>
+
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background container for icon launcher -->
+  <rect width="120" height="120" rx="26" fill="#0B132B" />
+
+  <!-- Outer Hexagonal Shield with athletic slant -->
+  <path
+    d="M60 10 L102 24 L102 78 L60 110 L18 78 L18 24 Z"
+    fill="url(#dfa_bg)"
+    stroke="url(#dfa_border)"
+    stroke-width="3.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Inner subtle grid lines -->
+  <path
+    d="M28 40 L92 40 M24 58 L96 58 M28 76 L92 76"
+    stroke="#334155"
+    stroke-width="1"
+    stroke-dasharray="3 3"
+    opacity="0.4"
+  />
+
+  <!-- Dynamic Curved Athletics Track Lanes -->
+  <path
+    d="M 24 74 C 38 84, 68 86, 84 62 C 90 54, 94 42, 96 30"
+    stroke="url(#lane_blue)"
+    stroke-width="4"
+    stroke-linecap="round"
+  />
+  
+  <path
+    d="M 28 81 C 44 91, 74 89, 91 68 C 97 60, 100 48, 101 36"
+    stroke="url(#lane_white)"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.9"
+  />
+
+  <path
+    d="M 34 88 C 50 96, 82 94, 96 75"
+    stroke="url(#lane_red)"
+    stroke-width="3.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Ascending Data Analytics Bars -->
+  <rect x="38" y="52" width="6" height="20" rx="3" fill="#0284C7" opacity="0.9" />
+  <rect x="47" y="38" width="6.5" height="34" rx="3" fill="#38BDF8" opacity="0.95" />
+  <rect x="57" y="26" width="7" height="46" rx="3.5" fill="url(#lane_blue)" />
+  <rect x="67" y="18" width="7" height="54" rx="3.5" fill="url(#gold_pulse)" filter="url(#glow)" />
+
+  <!-- Dynamic Arrow / Runner Impulse Crest -->
+  <path
+    d="M 62 20 L 82 12 L 75 30 Z"
+    fill="url(#gold_pulse)"
+  />
+
+  <!-- Stylized Sprinter -->
+  <circle cx="58" cy="25" r="3.2" fill="#FFFFFF" />
+  <path
+    d="M 58 29 L 52 40 L 41 48 M 52 40 L 59 51 L 67 60"
+    stroke="#FFFFFF"
+    stroke-width="2.4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M 47 34 L 55 37 L 65 32"
+    stroke="#FFFFFF"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Micro Record Sparkle -->
+  <path
+    d="M 86 14 L 88 8 L 90 14 L 96 16 L 90 18 L 88 24 L 86 18 L 80 16 Z"
+    fill="#FDE047"
+    opacity="0.9"
+  />
+
+  <!-- French Tricolor micro dots -->
+  <circle cx="53" cy="100" r="2.2" fill="#2563EB" />
+  <circle cx="60" cy="100" r="2.2" fill="#FFFFFF" />
+  <circle cx="67" cy="100" r="2.2" fill="#EF4444" />
+</svg>

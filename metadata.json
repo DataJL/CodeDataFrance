@@ -1,0 +1,8 @@
+{
+  "name": "Stats France Athlé",
+  "description": "Plateforme d'analyse et de reporting des performances en athlétisme français. Bilans par saison, évolution des records personnels, statistiques par entraîneur et club, exports Excel/Word/PDF et administration sécurisée 2FA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

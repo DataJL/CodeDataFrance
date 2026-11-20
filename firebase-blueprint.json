@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "OfficialSeasonFile": {
+      "title": "OfficialSeasonFile",
+      "description": "Metadata for registered official season bilan files",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier e.g. 2024-2025_COMBINE" },
+        "seasonLabel": { "type": "string", "description": "Season period label e.g. 2024-2025" },
+        "startYear": { "type": "number", "description": "Starting year of season e.g. 2024" },
+        "endYear": { "type": "number", "description": "Ending year of season e.g. 2025" },
+        "structure": { "type": "string", "enum": ["EXTERIEUR", "SALLE", "COMBINE"], "description": "Track environment" },
+        "fileName": { "type": "string", "description": "Uploaded or reference file name" },
+        "importedAt": { "type": "string", "description": "ISO date of import" },
+        "recordCount": { "type": "number", "description": "Total performance count in file" },
+        "totalLinesDetected": { "type": "number", "description": "Total lines detected in original file" },
+        "athleteCount": { "type": "number", "description": "Number of unique athletes in file" }
+      },
+      "required": ["id", "seasonLabel", "startYear", "endYear", "structure", "fileName", "importedAt", "recordCount"]
+    },
+    "PerformanceRecord": {
+      "title": "PerformanceRecord",
+      "description": "Certified athletic performance record extracted from official FFA bilan files",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique performance ID" },
+        "athleteId": { "type": "string", "description": "Normalized athlete slug" },
+        "athleteName": { "type": "string", "description": "Full athlete name" },
+        "sexe": { "type": "string", "enum": ["M", "F"], "description": "Athlete gender" },
+        "categorie": { "type": "string", "description": "FFA category code e.g. SE, CA, JU" },
+        "discipline": { "type": "string", "description": "Athletic event name" },
+        "nature": { "type": "string", "enum": ["time", "distance", "points"], "description": "Event nature" },
+        "performanceValue": { "type": "number", "description": "Numeric parsed performance" },
+        "performanceDisplay": { "type": "string", "description": "Formatted performance display" },
+        "perf_formatee": { "type": "string", "description": "Raw formatted performance string" },
+        "perf_ajustee": { "type": "number", "description": "Adjusted performance value" },
+        "vent": { "type": "number", "description": "Wind measurement in m/s" },
+        "structure": { "type": "string", "enum": ["EXTERIEUR", "SALLE"], "description": "Outdoor vs indoor" },
+        "date": { "type": "string", "description": "Date of competition ISO YYYY-MM-DD" },
+        "saison": { "type": "number", "description": "Season end year e.g. 2025" },
+        "saisonLabel": { "type": "string", "description": "Season label e.g. 2024-2025" },
+        "lieu": { "type": "string", "description": "Competition location" },
+        "club": { "type": "string", "description": "Athlete club" },
+        "departement": { "type": "string", "description": "Club department" },
+        "region": { "type": "string", "description": "FFA regional league" },
+        "entraineur": { "type": "string", "description": "Coach name" },
+        "niveau": { "type": "string", "description": "FFA level cotation e.g. N1, IR1" },
+        "pointsFFA": { "type": "number", "description": "FFA scoring table points" },
+        "code_ep": { "type": "string", "description": "Official FFA event code e.g. 110, 107" },
+        "nationalite": { "type": "string", "description": "Country code e.g. FRA" },
+        "annee_nais": { "type": "string", "description": "Athlete birth year" },
+        "licence": { "type": "string", "description": "FFA license number" },
+        "sourceFile": { "type": "string", "description": "Name of source bilan file" },
+        "createdAt": { "type": "string", "description": "Timestamp of record upload" }
+      },
+      "required": ["id", "athleteName", "sexe", "discipline", "performanceValue", "performanceDisplay", "structure", "date", "saison"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Administrator account authorized to manage global official databases",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "description": "Administrator email address" },
+        "role": { "type": "string", "enum": ["SUPER_ADMIN", "ADMIN"], "description": "Admin privilege level" },
+        "createdAt": { "type": "string", "description": "Registration date" }
+      },
+      "required": ["email", "role"]
+    },
+    "UserAccount": {
+      "title": "UserAccount",
+      "description": "User profile with roles and permissions",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique user ID" },
+        "email": { "type": "string", "description": "User email" },
+        "firstName": { "type": "string", "description": "User first name" },
+        "lastName": { "type": "string", "description": "User last name" },
+        "role": { "type": "string", "description": "User role" },
+        "club": { "type": "string", "description": "Associated club" },
+        "region": { "type": "string", "description": "Associated region" },
+        "createdAt": { "type": "string", "description": "Account creation timestamp" }
+      },
+      "required": ["id", "email", "firstName", "lastName", "role"]
+    }
+  },
+  "firestore": {
+    "/official_season_files/{fileId}": {
+      "schema": { "$ref": "#/entities/OfficialSeasonFile" },
+      "description": "Catalogue of registered official seasonal bilan files available across all users"
+    },
+    "/performances/{performanceId}": {
+      "schema": { "$ref": "#/entities/PerformanceRecord" },
+      "description": "Centralized official athletics performance dataset queried by bilan rankings and discipline reports"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Registry of authorized admin accounts"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserAccount" },
+      "description": "User profiles"
+    }
+  }
+}
